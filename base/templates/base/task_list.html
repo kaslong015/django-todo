@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo list </title>
+</head>
+<body>
+
+    {% if request.user.is_authenticated %}
+        <p>{{request.user}}</p>
+        <a href="">logout</a>
+    {% else %}
+        <a href="">login</a>
+    {% endif %}
+    <h1>todo list</h1>
+    <a href="{% url 'task-create' %}">Add item</a>
+    <table>
+        <tr>
+            <th>Item</td>
+            <th>Action</td>
+        </tr>
+        {% for task in object_list %}
+        <tr>
+            <td>{{task}}</td>
+            <td>
+                <a href="{% url 'task' task.id %}"> View </a> |
+                <a href="{% url 'update-task' task.id %}"> Update </a> |
+                <a href="{% url 'delete-task' task.id %}"> Delete </a>
+            </td>
+        </tr>
+        {% empty %}
+        <p>no task found</p>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
