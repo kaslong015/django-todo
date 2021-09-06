@@ -1,15 +1,14 @@
 {% extends 'base/main.html' %}
 {% block container %}
-
 <div class="header-bar">
-    <a href="{% url 'tasks' %}">&#8592; Back</a>
+    <h1>login</h1>
 </div>
-
 <div class="card-body">
-    <form method="POST" action>
+    <form action="" method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <button> Submit </button>
+        <Button class="button" type="submit"post>submit</Button>
+        <p>dont have an account?<a  href="{% url 'register' %}">Sign up</a></p>
     </form>
 </div>
 {% endblock container %}
